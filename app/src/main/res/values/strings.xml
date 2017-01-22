@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">PopularMovies</string>
+
+    <string name="popular_sort_chosen">Most Popular Movies</string>
+    <string name="top_rated_sort_chosen">Top Rated Movies</string>
+    <string name="settings_button_text">Settings</string>
+    <string name="sort_setting_title">Sort by</string>
+    <string name="release_date_text">Release Date: </string>
+    <string name="rating_text">Rating: </string>
+    <string name="summary_text">Summary: </string>
+
+    <string name="movies_api_error">There is a problem with the movies API. Try again.</string>
+    <string name="could_not_parse_response_data">Could not parse the response data: </string>
+
+    <!-- MoviesDB API keys -->
+    <string name="id_key">id</string>
+    <string name="poster_key">poster_path</string>
+    <string name="title_key">title</string>
+    <string name="results_key">results</string>
+    <string name="original_title_key">original_title</string>
+    <string name="vote_average_key">vote_average</string>
+    <string name="overview_key">overview</string>
+    <string name="release_date_key">release_date</string>
+
+    <!-- App Settings keys-->
+    <string name="setting_sort_chosen_key">sort_chosen</string>
+
+    <string-array name="sort_values">
+        <item>Popular Movies</item>
+        <item>Top Rated Movies</item>
+    </string-array>
+    <string-array name="sort_keys">
+        <item>popular_movies"</item>
+        <item>top_rated_movies</item>
+    </string-array>
+</resources>

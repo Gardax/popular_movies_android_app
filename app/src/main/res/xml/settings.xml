@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="App preferences">
+
+        <ListPreference
+            android:key="@string/setting_sort_chosen_key"
+            android:title="@string/sort_setting_title"
+            android:entries="@array/sort_values"
+            android:entryValues="@array/sort_keys"
+            />
+
+    </PreferenceCategory>
+</PreferenceScreen>
