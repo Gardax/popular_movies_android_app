@@ -6,6 +6,8 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.ConfigurationInfo;
 import android.content.res.Configuration;
 import android.graphics.drawable.GradientDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -116,14 +118,24 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Mov
     }
 
     private void loadMovies() {
+        if(!isNetworkAvailable()) {
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_internet_error),
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
         MoviesRequester moviesRequester = new MoviesRequester(this);
 
         Callback callback = new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e(TAG, e.toString());
-                Toast.makeText(getApplicationContext(), getResources().getString(R.string.movies_api_error),
-                        Toast.LENGTH_LONG).show();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.movies_api_error),
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
             }
 
             @Override
@@ -191,5 +203,14 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Mov
 
         movies = savedInstanceState.getParcelableArrayList("movies");
         moviesAdapter.setMovies(movies);
+    }
+
+    /**
+     * @return true if connected to internet
+     */
+    private boolean isNetworkAvailable() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
     }
 }
